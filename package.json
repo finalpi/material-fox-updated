@@ -5,6 +5,10 @@
   "private": true,
   "type": "module",
   "author": "https://github.com/finalpi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finalpi/material-fox-updated.git"
+  },
   "license": "MIT",
   "scripts": {
     "dev": "npm-run-all --parallel dev:chrome dev:content",
