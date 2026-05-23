@@ -239,8 +239,9 @@ function Get-FileDownloadUrlFromGithubReleases {
   try {
     # Get download url from github realeses
     $source = (Invoke-RestMethod -Uri $ReleasesUrl -Method Get -ErrorAction Stop)
+    $release = if ($source -is [array]) { $source[0] } else { $source }
 
-    return ($source[0].assets | Where-Object name -Match $FileName)[0].browser_download_url
+    return ($release.assets | Where-Object name -Match $FileName)[0].browser_download_url
   }
   catch {}
 
