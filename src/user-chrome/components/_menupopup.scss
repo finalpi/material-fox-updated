@@ -88,13 +88,16 @@ toolbarbutton menupopup[placespopup] menuseparator::before {
 
 menupopup,
 panel:not(#autoscroller) {
-  --panel-background: var(--arrowpanel-background) !important;
+  --arrowpanel-background: #{get-var("menu-background-color")} !important;
+  --panel-background: #{get-var("menu-background-color")} !important;
+  --panel-color: #{get-var("text-primary")} !important;
   --panel-shadow: #{get-var("elevation-2")} !important;
 }
 
 menupopup::part(content),
+menupopup::part(arrowscrollbox),
 menupopup > .menupopup-arrowscrollbox {
-  background-color: var(--arrowpanel-background) !important;
+  background: #{get-var("menu-background-color")} !important;
 }
 
 dialog,
