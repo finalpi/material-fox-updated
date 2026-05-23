@@ -21,7 +21,7 @@ To start using MaterialFox UPDATED, follow these steps:
 
 4. **Type** `about:support` in the address bar and press <kbd>Enter</kbd>.
 5. **Scroll down** to the `Profile Folder` section and **click** `Open Folder`.
-6. **Download** the `chrome.zip` file from the [**latest release**](https://github.com/edelvarden/material-fox-updated/releases/latest).
+6. **Download** the `chrome.zip` file from the [**latest release**](https://github.com/finalpi/material-fox-updated/releases/latest).
 7. **Extract** the contents of `chrome.zip` into your Firefox profile directory.
 8. **Restart** Firefox to apply the changes.
 
@@ -32,13 +32,13 @@ As an alternative to manual installation, you can use a PowerShell script.
 For **Windows**, run the following PowerShell command:
 
 ```powershell
-$env:MATERIAL_FOX_VERSION = "latest"; PowerShell -ExecutionPolicy Unrestricted -c "iwr https://raw.githubusercontent.com/edelvarden/material-fox-updated/main/install.ps1 -useb | iex"
+$env:MATERIAL_FOX_VERSION = "latest"; PowerShell -ExecutionPolicy Unrestricted -c "iwr https://raw.githubusercontent.com/finalpi/material-fox-updated/main/install.ps1 -useb | iex"
 ```
 
 For Firefox version **119** or below (Firefox ESR, Floorp or Waterfox)
 
 ```powershell
-$env:MATERIAL_FOX_VERSION = "tags/v1.0.7"; PowerShell -ExecutionPolicy Unrestricted -c "iwr https://raw.githubusercontent.com/edelvarden/material-fox-updated/main/install.ps1 -useb | iex"
+$env:MATERIAL_FOX_VERSION = "tags/v1.0.7"; PowerShell -ExecutionPolicy Unrestricted -c "iwr https://raw.githubusercontent.com/finalpi/material-fox-updated/main/install.ps1 -useb | iex"
 ```
 
 ## 💖 Support & Suggestions
@@ -47,7 +47,7 @@ If you enjoy this project and want to help me maintain it further, buying me a c
 
 <a href='https://ko-fi.com/edelvarden' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-Your **suggestions** and **bug reports** are also welcome on [GitHub Issues](https://github.com/edelvarden/material-fox-updated/issues).
+Your **suggestions** and **bug reports** are also welcome on [GitHub Issues](https://github.com/finalpi/material-fox-updated/issues).
 
 ## 🎨 Manual Customization
 
@@ -319,7 +319,7 @@ Examples with previews
 2. Clone this repo with the following command:
 
 ```bash
-git clone https://github.com/edelvarden/material-fox-updated.git chrome
+git clone https://github.com/finalpi/material-fox-updated.git chrome
 cd chrome
 npm install
 npm run dev

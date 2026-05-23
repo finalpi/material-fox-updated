@@ -1,10 +1,10 @@
 {
   "name": "material-fox-updated",
   "description": "Firefox user CSS theme, inspired by material design",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "type": "module",
-  "author": "https://github.com/edelvarden",
+  "author": "https://github.com/finalpi",
   "license": "MIT",
   "scripts": {
     "dev": "npm-run-all --parallel dev:chrome dev:content",

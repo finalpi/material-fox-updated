@@ -1,5 +1,5 @@
 param (
-  [string]$ReleasesUrl = "https://api.github.com/repos/edelvarden/material-fox-updated/releases/$env:MATERIAL_FOX_VERSION"
+  [string]$ReleasesUrl = "https://api.github.com/repos/finalpi/material-fox-updated/releases/$env:MATERIAL_FOX_VERSION"
 )
 
 function Get-FirefoxProfileDirectory {
@@ -255,11 +255,11 @@ function Invoke-Installation {
     [Parameter(Mandatory = $false)]
     [string]$ProfileDirectory = (Get-FirefoxProfileDirectory),
     [Parameter(Mandatory = $false)]
-    # [string]$DownloadUrl = (Get-FileDownloadUrlFromGithubReleases -ReleasesUrl "https://api.github.com/repos/edelvarden/material-fox-updated/releases/latest" -FileName "chrome.zip"),
-    # [string]$DownloadUrl = (Get-FileDownloadUrlFromGithubReleases -ReleasesUrl "https://api.github.com/repos/edelvarden/material-fox-updated/releases/tags/v1.0.7" -FileName "chrome.zip"),
+    # [string]$DownloadUrl = (Get-FileDownloadUrlFromGithubReleases -ReleasesUrl "https://api.github.com/repos/finalpi/material-fox-updated/releases/latest" -FileName "chrome.zip"),
+    # [string]$DownloadUrl = (Get-FileDownloadUrlFromGithubReleases -ReleasesUrl "https://api.github.com/repos/finalpi/material-fox-updated/releases/tags/v1.0.7" -FileName "chrome.zip"),
     [string]$DownloadUrl = (Get-FileDownloadUrlFromGithubReleases -ReleasesUrl $ReleasesUrl -FileName "chrome.zip"),
     [Parameter(Mandatory = $false)]
-    [string]$UserJSDownloadUrl = "https://raw.githubusercontent.com/edelvarden/material-fox-updated/main/user.js"
+    [string]$UserJSDownloadUrl = "https://raw.githubusercontent.com/finalpi/material-fox-updated/main/user.js"
   )
 
   if (!($DownloadUrl)) {
