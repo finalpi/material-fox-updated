@@ -45,7 +45,6 @@ body {
 
 #urlbar {
   &[open] {
-    background: get-var("urlbar-background-color-open") !important;
 
     #urlbar-background,
     .urlbar-background,
