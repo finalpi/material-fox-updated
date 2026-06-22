@@ -3,6 +3,14 @@
   margin: 0 !important;
   width: 100% !important;
   border-inline: none !important;
+  background: get-var("urlbar-background-color-open") !important;
+}
+
+#urlbar[open] > .urlbarView,
+#urlbar[open] > .urlbarView > .urlbarView-body-outer,
+#urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner,
+#urlbar[open] > .urlbarView .urlbarView-results {
+  background: get-var("urlbar-background-color-open") !important;
 }
 
 // urlbar suggestions item
