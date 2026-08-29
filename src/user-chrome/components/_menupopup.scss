@@ -94,14 +94,12 @@ panel:not(#autoscroller) {
   --panel-shadow: #{get-var("elevation-2")} !important;
 }
 
-// Keep popup foreground paired with the custom background. Native Windows
-// and Mica popup styles can otherwise supply a light-scheme text color while
-// MaterialFox is drawing a dark menu background.
-@include moz-pref-media("not userChrome.theme-default") {
-  menupopup,
-  menupopup :is(menu, menuitem, menucaption):not([disabled="true"]) {
-    color: #{get-var("text-primary")} !important;
-  }
+// Keep popup foreground paired with the custom background. This must also
+// apply with userChrome.theme-default because the popup background above is
+// customized unconditionally.
+menupopup,
+menupopup :is(menu, menuitem, menucaption):not([disabled="true"]) {
+  color: #{get-var("text-primary")} !important;
 }
 
 menupopup::part(content),
