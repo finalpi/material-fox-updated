@@ -17,6 +17,19 @@ richlistbox {
   background-color: get-var(input-background-color) !important;
 }
 
+// Form history and saved-login suggestions use the native FieldText color by
+// default. Keep it paired with the custom richlistbox background above.
+#PopupAutoComplete {
+  --panel-text-color: #{get-var(text-primary)} !important;
+  --panel-background-color: #{get-var(input-background-color)} !important;
+  color: #{get-var(text-primary)} !important;
+
+  > .autocomplete-richlistbox,
+  .autocomplete-richlistitem:not([selected]) {
+    color: #{get-var(text-primary)} !important;
+  }
+}
+
 richlistitem[selected] {
   background-color: get-var(accent-color) !important;
   color: get-var(text-on-accent) !important;
