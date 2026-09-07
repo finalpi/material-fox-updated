@@ -8,38 +8,61 @@
     right: auto !important;
   }
 
-  // YouTube's split-scroll experiment turns #secondary into a viewport-wide
-  // row. Restore the right sidebar's vertical flow for Language Reactor and
-  // keep the playlist below its expanded or collapsed transcript panel.
+  // YouTube's split-scroll experiment turns #secondary into a fixed,
+  // viewport-wide row and reserves a second sidebar with #columns::after.
+  // Restore the regular document-flow sidebar so Language Reactor, playlists,
+  // and recommendations keep their expected vertical order.
   body.lln-youtube.lln-active
     ytd-watch-flexy[split-scroll][fixed-panel-expanded]
-    > #columns
-    > #secondary {
-    display: grid !important;
-    grid-template-columns:
-      minmax(0, 1fr)
-      var(--ytd-watch-flexy-sidebar-width) !important;
-    grid-template-rows: auto auto !important;
-    column-gap: var(--ytd-watch-flexy-horizontal-page-margin) !important;
-    align-content: start !important;
+    > #columns {
+    &::after {
+      display: none !important;
+    }
 
-    > :is(.lln-vertical-view, .lln-vv-toggle-in-sidebar) {
-      grid-column: 2 !important;
-      grid-row: 1 !important;
+    > #primary {
+      max-width: none !important;
+    }
+
+    > #secondary {
+      display: block !important;
+      position: relative !important;
+      inset: auto !important;
+      flex: 0 0 var(--ytd-watch-flexy-sidebar-width) !important;
       box-sizing: border-box !important;
       width: var(--ytd-watch-flexy-sidebar-width) !important;
-    }
+      height: auto !important;
+      margin: var(--ytd-watch-flexy-top-padding)
+        var(--ytd-watch-flexy-horizontal-page-margin) 0 !important;
+      padding: 0 !important;
+      overflow: visible !important;
 
-    > #secondary-split-scroll-spacer {
-      grid-column: 1 !important;
-      grid-row: 1 / span 2 !important;
-      width: auto !important;
-      margin-left: 0 !important;
-    }
+      > :is(.lln-vertical-view, .lln-vv-toggle-in-sidebar) {
+        box-sizing: border-box !important;
+        width: 100% !important;
+      }
 
-    > #secondary-inner {
-      grid-column: 2 !important;
-      grid-row: 2 !important;
+      > #secondary-split-scroll-spacer {
+        display: none !important;
+      }
+
+      > #secondary-inner {
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+
+        > #related {
+          display: block !important;
+        }
+
+        > ytd-playlist-panel-renderer {
+          flex: none !important;
+          box-sizing: border-box !important;
+          height: min(
+            var(--ytd-watch-flexy-max-player-height),
+            calc((100vw - var(--ytd-watch-flexy-non-player-width)) * (9 / 16))
+          ) !important;
+        }
+      }
     }
   }
 }
