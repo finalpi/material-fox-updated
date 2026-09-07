@@ -1,10 +1,10 @@
 @-moz-document domain("youtube.com") {
-  // Language Reactor treats a stray RTL body marker as a request to move its
-  // theater-mode transcript to the left, even when the page itself is LTR.
-  html:dir(ltr)
-    body.lln-youtube[dir="rtl"]
+  // Keep Language Reactor's theater-mode transcript on its expected side even
+  // when YouTube exposes an inconsistent page direction to the extension.
+  body.lln-youtube.lln-active.lln-vertical-view-active
     #full-bleed-container
-    .lln-vertical-view {
+    > .lln-vertical-view {
     left: 100% !important;
+    right: auto !important;
   }
 }
