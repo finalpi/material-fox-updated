@@ -7,4 +7,39 @@
     left: 100% !important;
     right: auto !important;
   }
+
+  // YouTube's split-scroll experiment turns #secondary into a viewport-wide
+  // row. Restore the right sidebar's vertical flow for Language Reactor and
+  // keep the playlist below its expanded or collapsed transcript panel.
+  body.lln-youtube.lln-active
+    ytd-watch-flexy[split-scroll][fixed-panel-expanded]
+    > #columns
+    > #secondary {
+    display: grid !important;
+    grid-template-columns:
+      minmax(0, 1fr)
+      var(--ytd-watch-flexy-sidebar-width) !important;
+    grid-template-rows: auto auto !important;
+    column-gap: var(--ytd-watch-flexy-horizontal-page-margin) !important;
+    align-content: start !important;
+
+    > :is(.lln-vertical-view, .lln-vv-toggle-in-sidebar) {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+      box-sizing: border-box !important;
+      width: var(--ytd-watch-flexy-sidebar-width) !important;
+    }
+
+    > #secondary-split-scroll-spacer {
+      grid-column: 1 !important;
+      grid-row: 1 / span 2 !important;
+      width: auto !important;
+      margin-left: 0 !important;
+    }
+
+    > #secondary-inner {
+      grid-column: 2 !important;
+      grid-row: 2 !important;
+    }
+  }
 }
