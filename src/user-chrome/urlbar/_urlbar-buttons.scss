@@ -88,7 +88,19 @@
 }
 
 // fix "Not secure" doesn’t fit into pill shape correctly (#118)
-#identity-box[pageproxystate="valid"]:is(.extensionPage, .notSecure, .notSecureText, .mixedActiveContent, .httpsOnlyErrorPage, .weakCipher, .mixedDisplayContent, .mixedDisplayContentLoadedActiveBlocked, .certUserOverridden, #identity-box[pageproxystate="valid"].certErrorPage) #identity-icon-box.identity-box-button {
+#identity-box[pageproxystate="valid"]:is(
+    .extensionPage,
+    .notSecure,
+    .notSecureText,
+    .mixedActiveContent,
+    .httpsOnlyErrorPage,
+    .weakCipher,
+    .mixedDisplayContent,
+    .mixedDisplayContentLoadedActiveBlocked,
+    .certUserOverridden,
+    #identity-box[pageproxystate="valid"].certErrorPage
+  )
+  #identity-icon-box.identity-box-button {
   padding-inline: 8px !important;
 }
 
@@ -113,6 +125,89 @@
 // disable refresh button animation
 #nav-bar-customization-target {
   align-items: center;
+
+  > .toolbarbutton-1 {
+    margin-inline: 2px !important;
+  }
+}
+
+// Group toolbar actions like Chrome: pinned extensions, extensions menu,
+// profile, then the application menu. Built-in buttons keep their existing
+// user-defined order before this trailing group.
+#nav-bar-customization-target {
+  > toolbarbutton.webextension-browser-action {
+    order: 10 !important;
+  }
+
+  > #unified-extensions-button {
+    order: 20 !important;
+    position: relative !important;
+    margin-inline-end: 18px !important;
+
+    &::after {
+      content: "" !important;
+      position: absolute !important;
+      inset-inline-end: -10px !important;
+      top: 50% !important;
+      width: 2px !important;
+      height: 16px !important;
+      border-radius: 1px !important;
+      background-color: color-mix(
+        in srgb,
+        currentColor 20%,
+        transparent
+      ) !important;
+      transform: translateY(-50%) !important;
+      pointer-events: none !important;
+    }
+  }
+
+  > #fxa-toolbar-menu-button {
+    order: 30 !important;
+  }
+}
+
+#PanelUI-button,
+#PanelUI-menu-button {
+  order: 40 !important;
+}
+
+// Chromium's ExtensionsToolbarDesktop uses ToolbarIconContainerView to draw
+// one continuous pill border when the container or one of its children is
+// hovered, focused, pressed, or has an anchored popup. Firefox exposes the
+// pinned actions as siblings, so join border segments across their 2px margins.
+#nav-bar-customization-target:has(> .webextension-browser-action):has(
+    > :is(.webextension-browser-action, #unified-extensions-button):is(
+        :hover,
+        :focus-visible,
+        :active,
+        [open="true"]
+      )
+  ) {
+  > :is(.webextension-browser-action, #unified-extensions-button)::before {
+    content: "" !important;
+    position: absolute !important;
+    inset-block: 0 !important;
+    inset-inline: -2px !important;
+    border-block: 1px solid get-var("toolbar-icon-container-border-color") !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+  }
+
+  > .webextension-browser-action:not(
+      .webextension-browser-action ~ .webextension-browser-action
+    )::before {
+    border-inline-start: 1px solid
+      get-var("toolbar-icon-container-border-color") !important;
+    border-start-start-radius: 17px !important;
+    border-end-start-radius: 17px !important;
+  }
+
+  > #unified-extensions-button::before {
+    border-inline-end: 1px solid get-var("toolbar-icon-container-border-color") !important;
+    border-start-end-radius: 17px !important;
+    border-end-end-radius: 17px !important;
+  }
 }
 
 #reload-button,
@@ -132,5 +227,4 @@
   #urlbar-searchmode-switcher[open]:hover {
     background-color: get-var(background-color-100) !important;
   }
-
 }

@@ -59,7 +59,6 @@ body {
 
 // hide tab text and close button if pinned tab
 .tabbrowser-tab[pinned] {
-
   .tab-label-container,
   .tab-close-button {
     display: none !important;
@@ -161,7 +160,6 @@ body {
 }
 
 @include moz-pref-media("not userChrome.theme-default") {
-
   html,
   body {
     --tab-background-color: #{get-var("background-color-100")} !important;
@@ -186,8 +184,8 @@ body {
 }
 
 // hover bg opacity for not selected tab
-.tabbrowser-tab:not([selected="true"]):hover,
-.tabbrowser-tab[multiselected]:not([selected="true"]) {
+.tabbrowser-tab:not([selected]):hover,
+.tabbrowser-tab[multiselected]:not([selected]) {
   --tab-opacity: #{get-var("tab-opacity-hover")} !important;
 }
 
@@ -226,7 +224,9 @@ body {
 }
 
 // tabs top margin if window not maximized
-#main-window[sizemode="normal"] #TabsToolbar-customization-target> :not(#alltabs-button) {
+#main-window[sizemode="normal"]
+  #TabsToolbar-customization-target
+  > :not(#alltabs-button) {
   margin-top: 8px !important;
 }
 
@@ -296,9 +296,8 @@ body {
 
 // fixes for macOS
 @media (-moz-platform: macos) {
-
   // tabs bar top margin
-  #TabsToolbar-customization-target> :not(#alltabs-button) {
+  #TabsToolbar-customization-target > :not(#alltabs-button) {
     margin-top: 8px !important;
   }
 

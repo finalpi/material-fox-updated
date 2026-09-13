@@ -1,12 +1,12 @@
 // Main URL bar wrapper with paddings
 #urlbar-container {
-  --urlbar-container-height: 42px !important;
+  --urlbar-container-height: 46px !important;
 }
 
 // Just URL bar without top and bottom paddings
 #urlbar {
   --urlbar-height: 34px !important;
-  --urlbar-toolbar-height: 42px !important;
+  --urlbar-toolbar-height: 46px !important;
 }
 
 html,
@@ -27,7 +27,9 @@ body {
 #urlbar-go-button,
 .search-go-button {
   width: auto !important;
-  height: calc(var(--urlbar-height) - var(--urlbar-container-padding) * 2) !important;
+  height: calc(
+    var(--urlbar-height) - var(--urlbar-container-padding) * 2
+  ) !important;
   border-radius: var(--urlbar-icon-border-radius) !important;
   padding: 0 8px !important;
   -moz-box-pack: center !important;
@@ -45,7 +47,6 @@ body {
 
 #urlbar {
   &[open] {
-
     #urlbar-background,
     .urlbar-background,
     #searchbar {
@@ -60,7 +61,6 @@ body {
   }
 
   &:not([open])[focused] {
-
     #urlbar-background,
     .urlbar-background,
     #searchbar {
@@ -79,7 +79,6 @@ body {
 
 @include moz-pref-media("not userChrome.theme-default") {
   #urlbar:is([open], [focused]) {
-
     #urlbar-background,
     .urlbar-background,
     #searchbar,

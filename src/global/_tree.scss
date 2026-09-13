@@ -28,9 +28,18 @@ richlistbox {
   .autocomplete-richlistitem:not([selected]) {
     color: #{get-var(text-primary)} !important;
   }
+
+  > .autocomplete-richlistbox {
+    padding-block: 8px !important;
+  }
+
+  .autocomplete-richlistitem {
+    margin-inline: 4px !important;
+    border-radius: 8px !important;
+  }
 }
 
 richlistitem[selected] {
-  background-color: get-var(accent-color) !important;
-  color: get-var(text-on-accent) !important;
+  background-color: get-var(menu-background-color-selected) !important;
+  color: get-var(text-primary) !important;
 }

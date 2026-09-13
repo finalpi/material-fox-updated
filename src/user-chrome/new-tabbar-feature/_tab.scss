@@ -1,6 +1,6 @@
 html,
 body {
-  --tab-min-height: 40px !important;
+  --tab-min-height: 41px !important;
   --tab-vertical-padding: 6px;
   --tab-horizontal-padding: 3px;
 }
@@ -15,30 +15,18 @@ body {
 
 .tab-background {
   margin-top: var(--tab-vertical-padding) !important;
-  min-height: calc(var(--tab-min-height) - var(--tab-vertical-padding)) !important;
-  max-height: calc(var(--tab-min-height) - var(--tab-vertical-padding)) !important;
+  min-height: calc(
+    var(--tab-min-height) - var(--tab-vertical-padding)
+  ) !important;
+  max-height: calc(
+    var(--tab-min-height) - var(--tab-vertical-padding)
+  ) !important;
 }
 
 .tab-background {
-
   &::before,
   &::after {
-    min-width: 12px !important;
-    max-width: 12px !important;
-    min-height: 12px !important;
-    max-height: 12px !important;
-  }
-
-  &::before {
-    border-bottom-right-radius: 12px !important;
-    transform: translateX(-12px) !important;
-    box-shadow: none !important;
-  }
-
-  &::after {
-    border-bottom-left-radius: 12px !important;
-    transform: translateX(12px) !important;
-    box-shadow: none !important;
+    display: none !important;
   }
 }
 
@@ -66,8 +54,8 @@ body {
 }
 
 // hover bg opacity for not selected tab
-.tabbrowser-tab:not([selected="true"]):hover,
-.tabbrowser-tab[multiselected]:not([selected="true"]) {
+.tabbrowser-tab:not([selected]):hover,
+.tabbrowser-tab[multiselected]:not([selected]) {
   .tab-background {
     margin-top: var(--tab-vertical-padding) !important;
     margin-bottom: var(--tab-vertical-padding) !important;
@@ -85,8 +73,8 @@ body {
 }
 
 // hover bg opacity for not selected tab
-.tabbrowser-tab:not([selected="true"]):hover,
-.tabbrowser-tab[multiselected]:not([selected="true"]) {
+.tabbrowser-tab:not([selected]):hover,
+.tabbrowser-tab[multiselected]:not([selected]) {
   --tab-opacity: 1 !important;
 }
 
@@ -113,36 +101,31 @@ body {
 
 // selected tab style
 .tabbrowser-tab:is([visuallyselected], [selected]) .tab-background {
-  min-height: 34px !important;
-  max-height: 34px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  margin-bottom: var(--tab-vertical-padding) !important;
 
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-
-  &::before {
-    box-shadow: 4px 4px 0 4px var(--tab-selected-bgcolor) !important;
-  }
-
-  &::after {
-    box-shadow: -4px 4px 0 4px var(--tab-selected-bgcolor) !important;
-  }
+  border-bottom-left-radius: 11px !important;
+  border-bottom-right-radius: 11px !important;
 }
 
 @include moz-pref-media("not userChrome.theme-default") {
-
   // hover bg opacity for not selected tab
-  .tabbrowser-tab:not([selected="true"]):hover,
-  .tabbrowser-tab[multiselected]:not([selected="true"]) {
+  .tabbrowser-tab:not([selected]):hover,
+  .tabbrowser-tab[multiselected]:not([selected]) {
     --tab-background-color: #{get-var("tab-background-color-hover")} !important;
   }
+}
 
-  // selected tab style
-  .tabbrowser-tab:is([visuallyselected], [selected]) .tab-background {
-    &::before {
-      box-shadow: 4px 4px 0 4px var(--tab-background-color) !important;
-    }
-    &::after {
-      box-shadow: -4px 4px 0 4px var(--tab-background-color) !important;
-    }
+// Firefox moves tabs with compositor-friendly transforms. Avoid repainting
+// child backgrounds and separators while those transforms update.
+#tabbrowser-tabs[movingtab] .tabbrowser-tab,
+.tabbrowser-tab[style*="transform"] {
+  will-change: transform !important;
+
+  .tab-background,
+  .tab-content::before,
+  .tab-content::after {
+    transition: none !important;
   }
 }

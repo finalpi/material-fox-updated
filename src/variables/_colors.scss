@@ -29,19 +29,32 @@ $colors: (
 );
 
 $global: (
-  "alltabs-background-color-open": cm(get-var(accent-color), get-var(tab-background-color-hover), 0.5),
+  "alltabs-background-color-open": cm(
+      get-var(accent-color),
+      get-var(tab-background-color-hover),
+      0.5
+    ),
   "urlbar-background-color-hover": get-var("menu-background-color-hover"),
   "urlbar-background-color-open": get-var("background-color-100"),
   "findbar-notfound-background-color": rgba(255, 0, 0, 0.3),
+  // Chrome uses a translucent accent state layer for selected dropdown rows.
+  "menu-background-color-selected": cm(
+      get-var("input-background-color"),
+      get-var("accent-color"),
+      0.235
+    ),
   // --------------------------------------------------------------------------------
   // -- Shadow
   // --------------------------------------------------------------------------------
-  "elevation-2": (0 2px 4px 0 rgba(0, 0, 0, 0.28),
-  ),
-  "elevation-3": (rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+  "elevation-2": (
+      0 2px 4px 0 rgba(0, 0, 0, 0.28),
+    ),
+  "elevation-3": (
+    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
   ),
-  "elevation-4": (rgba(0, 0, 0, 0.56) 0px 22px 70px 4px,
+  "elevation-4": (
+    rgba(0, 0, 0, 0.56) 0px 22px 70px 4px,
   ),
 );
 
@@ -63,16 +76,36 @@ $dark-mode: (
   "text-on-accent": get-var("grey-900"),
   "secondary-button-text": get-var(accent-color),
   // button, dropdown
-  "control-background-color": cm(transparent, get-var("white"), 0.0605),
+  "control-background-color": cm(transparent, get-var("white"), 0.06),
+  "control-background-color-active": cm(transparent, get-var("white"), 0.12),
   "control-border-color": cm(transparent, get-var("white"), 0.0605),
+  "toolbar-icon-container-border-color": cm(
+      transparent,
+      get-var("white"),
+      0.125
+    ),
   // input, select, textarea
   "input-background-color": get-var("background-color-0"),
+  "urlbar-background-color": get-var("input-background-color"),
   // menu, popups
   "menu-background-color": get-var(background-color-50),
-  "menu-background-color-hover": cm(transparent, white, 0.15),
+  "menu-background-color-hover": cm(
+      get-var("menu-background-color"),
+      get-var("white"),
+      0.06
+    ),
+  "menu-background-color-active": cm(
+      get-var("menu-background-color"),
+      get-var("white"),
+      0.1
+    ),
   "menu-border-color": get-var("grey-800"),
   // tab bar
-  "tab-background-color-hover": #004a77,
+  "tab-background-color-hover": cm(
+      get-var("background-color-0"),
+      get-var("background-color-100"),
+      0.4
+    ),
   "tab-separator-color": cm(transparent, get-var("white"), 0.2),
   "tab-outline-color": cm(transparent, get-var("black"), 0.1),
   "tab-opacity": 1,
@@ -83,7 +116,11 @@ $dark-mode: (
   "tab-label-color-inactive": #c3c3c3,
 
   // nav bar
-  "urlbar-background-color-hover": cm(transparent, get-var("menu-background-color-hover"), 0.7),
+  "urlbar-background-color-hover": cm(
+      transparent,
+      get-var("menu-background-color-hover"),
+      0.7
+    ),
   "urlbar-background-color-open": get-var("background-color-50"),
   "icon-color-primary": get-var("grey-100"),
   "icon-color-secondary": get-var(grey-500),
@@ -91,11 +128,10 @@ $dark-mode: (
   // selection colors
   "selection-text-color": get-var("white"),
   "selection-background-color": get-var(blue-900),
-
   // new tab search input shadow
   "search-input-shadow": 0 2px 6px 0 #20212451,
   // new tab tile background color
-  "tile-background-color": #444746,
+  "tile-background-color": #444746
 );
 
 $light-mode: (
@@ -104,8 +140,8 @@ $light-mode: (
   "accent-color-hover": cm(transparent, get-var(accent-color), 0.8),
   "accent-color-transparent": cm(transparent, get-var(accent-color), 0.0837),
   // UI background colors
-  "background-color-0": #dee1e6,
-  "background-color-50": get-var("grey-100"),
+  "background-color-0": #d8e2fc,
+  "background-color-50": #eef2fa,
   "background-color-100": get-var("white"),
   // UI text
   "text-primary": get-var("grey-900"),
@@ -115,17 +151,36 @@ $light-mode: (
   "text-on-accent": get-var("white"),
   "secondary-button-text": get-var(accent-color),
   // button, dropdown
-  "control-background-color": get-var(background-color-50),
+  "control-background-color": cm(transparent, get-var("black"), 0.06),
+  "control-background-color-active": cm(transparent, get-var("black"), 0.12),
   "control-border-color": transparent,
-
+  "toolbar-icon-container-border-color": cm(
+      transparent,
+      get-var("black"),
+      0.125
+    ),
   // input, select, textarea
   "input-background-color": get-var(background-color-100),
+  "urlbar-background-color": #eef2fa,
   // menu, popups
   "menu-background-color": get-var(background-color-100),
-  "menu-background-color-hover": get-var("background-color-0"),
+  "menu-background-color-hover": cm(
+      get-var("menu-background-color"),
+      get-var("black"),
+      0.06
+    ),
+  "menu-background-color-active": cm(
+      get-var("menu-background-color"),
+      get-var("black"),
+      0.1
+    ),
   "menu-border-color": get-var("background-color-0"),
   // tab bar
-  "tab-background-color-hover": get-var("accent-color-transparent-active"),
+  "tab-background-color-hover": cm(
+      get-var("background-color-0"),
+      get-var("background-color-100"),
+      0.4
+    ),
   "tab-separator-color": cm(transparent, get-var("black"), 0.2),
   "tab-outline-color": cm(transparent, get-var("black"), 0.2),
   "tab-opacity": 1,
@@ -143,11 +198,10 @@ $light-mode: (
   // selection colors
   "selection-text-color": get-var("black"),
   "selection-background-color": get-var("blue-200"),
-
   // new tab search input shadow
   "search-input-shadow": 0 1px 6px 0 #20212447,
   // new tab tile background color
-  "tile-background-color": #e1e3e1,
+  "tile-background-color": #e1e3e1
 );
 
 // optional feature: Chrome refresh colors for dark mode
@@ -158,8 +212,18 @@ $chrome-refresh-colors: (
   "background-color-100": #3c3c3c,
   "text-secondary": #c7c7c7,
   "menu-background-color": #1f1f1f,
-  "menu-background-color-hover": cm(transparent, white, 0.15),
+  "menu-background-color-hover": cm(
+      get-var("menu-background-color"),
+      get-var("white"),
+      0.06
+    ),
+  "menu-background-color-active": cm(
+      get-var("menu-background-color"),
+      get-var("white"),
+      0.1
+    ),
   "menu-border-color": #444746,
+  "tab-background-color-hover": #254976,
   "content-separator-color": #444746,
   "selection-text-color": get-var("black"),
   "selection-background-color": #a8c7fa,
@@ -167,6 +231,7 @@ $chrome-refresh-colors: (
   "urlbar-background-color-hover": #4a4a4a,
   "urlbar-background-color-open": get-var("background-color-50"),
   "input-background-color": #1f1f1f,
+  "urlbar-background-color": #202124,
 );
 
 $theme-material-light: (
@@ -187,7 +252,17 @@ $theme-material-light: (
   "secondary-button-text": get-var(accent-color),
   // menu, popups
   "menu-background-color": get-var(background-color-100),
-  "menu-background-color-hover": get-var("background-color-0"),
+  "urlbar-background-color": get-var(background-color-100),
+  "menu-background-color-hover": cm(
+      get-var("menu-background-color"),
+      get-var("black"),
+      0.06
+    ),
+  "menu-background-color-active": cm(
+      get-var("menu-background-color"),
+      get-var("black"),
+      0.1
+    ),
   "menu-border-color": get-var("background-color-0"),
   // tab bar
   "tab-background-color-hover": get-var("accent-color-transparent-active"),
@@ -222,12 +297,21 @@ $theme-material-dark: (
   "secondary-button-text": get-var(accent-color),
   // menu, popups
   "menu-background-color": get-var(background-color-50),
-  "menu-background-color-hover": cm(get-var(background-color-100), get-var(accent-color), 0.15),
+  "urlbar-background-color": get-var(background-color-0),
+  "menu-background-color-hover": cm(
+      get-var("menu-background-color"),
+      get-var("white"),
+      0.06
+    ),
+  "menu-background-color-active": cm(
+      get-var("menu-background-color"),
+      get-var("white"),
+      0.1
+    ),
   "menu-border-color": cm(get-var(sys-color-outline), #444746, 0.9),
   // tab bar
-  "tab-background-color-hover": cm(transparent,
-    get-var(sys-color-primary),
-    0.2),
+  "tab-background-color-hover":
+    cm(transparent, get-var(sys-color-primary), 0.2),
   "tab-separator-color": cm(transparent, get-var("white"), 0.2),
   "tab-outline-color": cm(transparent, get-var("black"), 0.1),
   "tab-icon-color": get-var(text-secondary),

@@ -3,6 +3,12 @@
   border-radius: 7px 7px 0 0 !important;
 }
 
+// Chromium maps both the toolbar and attached bookmarks bar to kColorToolbar.
+#nav-bar,
+#PersonalToolbar {
+  background-color: get-var("background-color-100") !important;
+}
+
 // remove rounded corners for popup windows
 #main-window[chromehidden="menubar toolbar directories extrachrome "] {
   #nav-bar {
@@ -12,7 +18,6 @@
 
 // chrome refresh lock icon style
 @include moz-pref-media("not userChrome.ui-compact-url-bar") {
-
   // lock (secure)
   #identity-box[pageproxystate="valid"] {
     &:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon {
@@ -64,9 +69,9 @@
     background-color: get-var(background-color-100) !important;
   }
 
-  #identity-box[pageproxystate="valid"].notSecureText>.identity-box-button,
-  #identity-box[pageproxystate="valid"].chromeUI>.identity-box-button,
-  #identity-box[pageproxystate="valid"].extensionPage>.identity-box-button,
+  #identity-box[pageproxystate="valid"].notSecureText > .identity-box-button,
+  #identity-box[pageproxystate="valid"].chromeUI > .identity-box-button,
+  #identity-box[pageproxystate="valid"].extensionPage > .identity-box-button,
   #urlbar-label-box {
     background-color: get-var(background-color-100) !important;
   }

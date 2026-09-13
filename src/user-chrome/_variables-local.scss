@@ -1,5 +1,4 @@
 @include moz-pref-media("not userChrome.theme-default") {
-
   // accent color vars
   :root,
   html,
@@ -62,15 +61,17 @@
 
     // gray-900 - 0% lt dark bg
     --lwt-accent-color: #{get-var("background-color-0")} !important;
-    --toolbar-field-background-color: #{get-var("background-color-0")} !important;
-    --toolbar-field-focus-background-color: #{get-var("background-color-0")} !important;
+    --toolbar-field-background-color: #{get-var("urlbar-background-color")} !important;
+    --toolbar-field-focus-background-color: #{get-var(
+        "urlbar-background-color"
+      )} !important;
     --lwt-background-tab-separator-color: #{get-var("background-color-0")} !important;
 
     // grey-900-white-4-percent - 50% lt dark bg
     --arrowpanel-background: #{get-var("menu-background-color")} !important;
     --arrowpanel-border-color: #{get-var("menu-border-color")} !important;
     --panel-separator-color: #{get-var("menu-border-color")} !important;
-    --lwt-selected-tab-background-color: #{get-var("background-color-50")} !important;
+    --lwt-selected-tab-background-color: #{get-var("background-color-100")} !important;
     --autocomplete-popup-highlight-background: #{get-var("background-color-50")} !important;
     --tabpanel-background-color: #{get-var("background-color-50")} !important;
     --toolbarseparator-color: #{get-var("background-color-50")} !important;
@@ -116,19 +117,16 @@
     --in-content-primary-button-text-color: #{get-var("text-on-accent")} !important;
     --in-content-primary-button-background: #{get-var("accent-color")} !important;
     --in-content-primary-button-background-hover: #{get-var(
- "accent-color-hover"
-    )
+        "accent-color-hover"
+      )} !important;
+    --in-content-primary-button-background-active: #{get-var("accent-color")} !important;
   }
 
-  !important;
-  --in-content-primary-button-background-active: #{get-var("accent-color")} !important;
-}
-
-// Remove tab outline described in https://github.com/finalpi/material-fox-updated/issues/62
-:root,
-html,
-body,
-.tab-background {
-  --tab-selected-outline-color: transparent !important;
-}
+  // Remove tab outline described in https://github.com/finalpi/material-fox-updated/issues/62
+  :root,
+  html,
+  body,
+  .tab-background {
+    --tab-selected-outline-color: transparent !important;
+  }
 }

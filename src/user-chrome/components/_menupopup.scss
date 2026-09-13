@@ -102,10 +102,9 @@ menupopup :is(menu, menuitem, menucaption):not([disabled="true"]) {
   color: #{get-var("text-primary")} !important;
 }
 
-@include moz-pref-media("userChrome.theme-default") {
-  menupopup :is(menu, menuitem):where([_moz-menuactive="true"]):not([disabled="true"]) {
-    color: -moz-menuhovertext !important;
-  }
+menupopup
+  :is(menu, menuitem):where([_moz-menuactive="true"]):not([disabled="true"]) {
+  color: #{get-var("text-primary")} !important;
 }
 
 menupopup::part(content),

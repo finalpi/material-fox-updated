@@ -48,7 +48,7 @@
     )
     .tab-content::before,
   #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow])
-    .tabbrowser-tab[last-visible-tab]:not(
+    :is(.tabbrowser-tab[last-visible-tab], .tabbrowser-tab:last-of-type):not(
       :is([visuallyselected], [selected])
     ):not(:hover):not([multiselected])
     .tab-content::after {
@@ -73,7 +73,7 @@
     )
     .tab-content::after,
   #tabbrowser-tabs[hasadjacentnewtabbutton]:not([overflow])
-    .tabbrowser-tab[last-visible-tab]:not(
+    :is(.tabbrowser-tab[last-visible-tab], .tabbrowser-tab:last-of-type):not(
       :is([visuallyselected], [selected])
     ):not(:hover):not([multiselected])
     .tab-content::before {
