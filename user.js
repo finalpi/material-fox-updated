@@ -1,8 +1,7 @@
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // for enable userChrome/userContent
 user_pref("svg.context-properties.content.enabled", true); // for svg
 user_pref("layout.css.color-mix.enabled", true); // for color-mix
-user_pref("browser.theme.unified-color-scheme", true); // keep webpages in sync with the toolbar theme
-
+user_pref("browser.theme.unified-color-scheme", false); // preserve custom theme color-scheme variants
 // * Available preferences
 
 user_pref("userChrome.ui-chrome-refresh", true);

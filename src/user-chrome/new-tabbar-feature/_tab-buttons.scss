@@ -85,6 +85,16 @@
   }
 }
 
+// Firefox 155 inserts an inner border whenever a toolbar button precedes the
+// tab strip. Chrome's Tab Search control has no separator here.
+#alltabs-button ~ #tabbrowser-tabs[orient="horizontal"]::before {
+  display: none !important;
+  content: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 [dir="rtl"] {
   #alltabs-button .toolbarbutton-badge-stack {
     transform: none !important;
@@ -102,8 +112,8 @@
   }
 }
 
-// fix first tab left decorative corner cropping (`.tab-background::before`)
 @media (-moz-platform: windows) or (-moz-platform: linux) {
+  // Leave room for the selected tab's decorative corner.
   .scrollbox-clip[orient="horizontal"] > scrollbox:nth-child(1) {
     padding-inline-start: 11px !important;
     margin-inline-start: -11px !important;
@@ -135,7 +145,7 @@
   }
 }
 
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   #alltabs-button {
     // default color
     .toolbarbutton-badge-stack {
@@ -182,7 +192,7 @@
   }
 }
 
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   #tabs-newtab-button,
   #new-tab-button {
     &:not([disabled]):hover

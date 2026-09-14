@@ -221,7 +221,7 @@
   }
 }
 
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   #urlbar-searchmode-switcher,
   #urlbar-searchmode-switcher[open],
   #urlbar-searchmode-switcher[open]:hover {

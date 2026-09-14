@@ -1,98 +1,67 @@
-// fixes for default Firefox colors feature
-@include moz-pref-media("userChrome.theme-default") {
+// Firefox 155 paints the composed theme image on body by default, and moves it
+// to the toolbox only when theme-image-in-toolbox is present. Mirror that
+// split exactly so an opaque toolbox never covers artwork painted on body.
+:root[lwtheme]:not([theme-image-in-toolbox]) body,
+:root[lwtheme][theme-image-in-toolbox] #navigator-toolbox {
+  background-color: var(
+    --lwt-accent-color,
+    #{get-var("background-color-0")}
+  ) !important;
+  background-image: var(--toolbox-background-image, none) !important;
+  background-repeat: var(--toolbox-background-repeat, no-repeat) !important;
+  background-position: var(--toolbox-background-position, right top) !important;
+  background-size: var(--toolbox-background-size, auto) !important;
+}
 
-  // urlbar suggestions item
-  .urlbarView-row {
-    &[selected] {
-      background-color: #{cm(rgba(0, 0, 0, 0.2), get-var("white"), 0.15)} !important;
-    }
+:root[lwtheme]:not([theme-image-in-toolbox]) #navigator-toolbox {
+  background-color: transparent !important;
+  background-image: none !important;
+}
 
-    &[selected] {
-      border-left-color: var(--color-accent-primary) !important;
-    }
+:root[lwtheme] #titlebar,
+:root[lwtheme] #toolbar-menubar,
+:root[lwtheme] #TabsToolbar {
+  background-color: transparent !important;
+  background-image: none !important;
+}
 
-    &:not([selected]):hover {
-      background-color: #{cm(rgba(0, 0, 0, 0.2), get-var("white"), 0.15)} !important;
-    }
-  }
+// Firefox computes these attributes from each theme's own foreground and
+// background pairs. Use them for browser chrome only; Website appearance
+// continues to control web content independently.
+:root[lwtheme][lwt-toolbar="dark"] {
+  color-scheme: dark !important;
+}
 
-  .urlbarView-row {
-    &:not([selected]):hover {
-      border-left-color: #{cm(rgba(0, 0, 0, 0.2), get-var("white"), 0.15)} !important;
-    }
-  }
+:root[lwtheme][lwt-toolbar="light"] {
+  color-scheme: light !important;
+}
 
-  [dir="rtl"] {
-    .urlbarView-row {
-      &[selected] {
-        border-left-color: var(--color-accent-primary) !important;
-      }
+:root[lwtheme][lwt-tab-selected="dark"]
+  .tabbrowser-tab:is([selected], [visuallyselected]) {
+  color-scheme: dark !important;
+}
 
-      &:not([selected]):hover {
-        border-right-color: #{cm(rgba(0, 0, 0, 0.2), get-var("white"), 0.15)} !important;
-      }
-    }
-  }
+:root[lwtheme][lwt-tab-selected="light"]
+  .tabbrowser-tab:is([selected], [visuallyselected]) {
+  color-scheme: light !important;
+}
 
-  // global accent color
-  :root,
-  html,
-  body {
-    --#{$prefix}-accent-color: var(--color-accent-primary) !important;
-    // --md-text-on-accent: var(--button-primary-color) !important;
-    --#{$prefix}-menu-border-color: var(--arrowpanel-border-color) !important;
+:root[lwtheme][lwt-toolbar-field="dark"] :is(#urlbar, #searchbar),
+:root[lwtheme][lwt-toolbar-field-focus="dark"]
+  :is(#urlbar[focused], #urlbar[open], #searchbar:focus-within) {
+  color-scheme: dark !important;
+}
 
-    --toolbar-field-focus-border-color: var(--color-accent-primary) !important;
-  }
+:root[lwtheme][lwt-toolbar-field="light"] :is(#urlbar, #searchbar),
+:root[lwtheme][lwt-toolbar-field-focus="light"]
+  :is(#urlbar[focused], #urlbar[open], #searchbar:focus-within) {
+  color-scheme: light !important;
+}
 
-  .browser-toolbar {
-    &:not(.titlebar-color) {
-      background-color: var(--toolbar-bgcolor) !important;
-    }
-  }
+:root[lwtheme][lwt-popup="dark"] :is(panel, menupopup) {
+  color-scheme: dark !important;
+}
 
-  // make navbar the same color as selected tab
-  @media (prefers-color-scheme: dark) {
-
-    html,
-    body {
-      --toolbar-bgcolor: var(--tab-selected-bgcolor) !important;
-    }
-
-    #nav-bar {
-      background-color: var(--toolbar-bgcolor) !important;
-    }
-  }
-
-  #urlbar-background, .urlbar-background {
-    background-color: var(--toolbar-field-background-color) !important;
-  }
-
-  #urlbar:is([open], [focused]) {
-
-    #urlbar-background, .urlbar-background,
-    #searchbar {
-      background-color: var(--toolbar-field-focus-background-color) !important;
-    }
-  }
-
-  @include moz-pref-media("userChrome.ui-chrome-refresh") {
-    #alltabs-button {
-      .toolbarbutton-badge-stack {
-        background-color: var(--tab-selected-bgcolor) !important;
-      }
-
-      &:not(:active, [open="true"]):hover {
-        .toolbarbutton-badge-stack {
-          background-color: get-var("alltabs-background-color-open") !important;
-        }
-      }
-
-      &:active:hover {
-        .toolbarbutton-badge-stack {
-          background-color: var(--tab-selected-bgcolor) !important;
-        }
-      }
-    }
-  }
+:root[lwtheme][lwt-popup="light"] :is(panel, menupopup) {
+  color-scheme: light !important;
 }

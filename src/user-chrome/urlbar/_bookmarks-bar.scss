@@ -102,7 +102,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 
 // recolor like in chrome
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   .bookmark-item {
     fill: get-var(text-secondary) !important;
 

@@ -102,7 +102,7 @@ body {
 }
 
 //
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   @include moz-pref-media("userChrome.ui-chrome-refresh") {
     html,
     body {

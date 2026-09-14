@@ -77,7 +77,7 @@ body {
   font-size: 14px !important;
 }
 
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   #urlbar:is([open], [focused]) {
     #urlbar-background,
     .urlbar-background,

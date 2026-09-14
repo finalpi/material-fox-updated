@@ -1,58 +1,60 @@
-// popup menu shortcuts gray if not mouseover
-.toolbarbutton-1,
-.subviewbutton,
-.widget-overflow-list .toolbarbutton-1,
-.toolbaritem-combined-buttons:is(
-    :not([cui-areatype="toolbar"]),
-    [overflowedItem="true"]
-  )
-  > toolbarbutton {
-  &:not([disabled]) {
-    &[shortcut]::after {
-      color: get-var("text-disabled") !important;
+:root:not([lwtheme]) {
+  // popup menu shortcuts gray if not mouseover
+  .toolbarbutton-1,
+  .subviewbutton,
+  .widget-overflow-list .toolbarbutton-1,
+  .toolbaritem-combined-buttons:is(
+      :not([cui-areatype="toolbar"]),
+      [overflowedItem="true"]
+    )
+    > toolbarbutton {
+    &:not([disabled]) {
+      &[shortcut]::after {
+        color: get-var("text-disabled") !important;
+      }
+
+      &:hover[shortcut]::after {
+        color: inherit !important;
+      }
     }
 
-    &:hover[shortcut]::after {
-      color: inherit !important;
+    &[disabled] {
+      &[shortcut]::after {
+        color: get-var("text-disabled") !important;
+      }
+
+      &:hover[shortcut]::after {
+        color: get-var("text-disabled") !important;
+      }
     }
   }
 
-  &[disabled] {
-    &[shortcut]::after {
-      color: get-var("text-disabled") !important;
-    }
-
-    &:hover[shortcut]::after {
-      color: get-var("text-disabled") !important;
-    }
-  }
-}
-
-// also for #toolbar-menubar
-menuitem:not([disabled]) {
-  .menu-accel,
-  .menu-iconic-accel {
-    color: get-var("text-secondary") !important;
-  }
-
-  &:hover {
-    .menu-accel,
-    .menu-iconic-accel {
-      color: inherit !important;
-    }
-  }
-}
-
-menuitem[disabled] {
-  .menu-accel,
-  .menu-iconic-accel {
-    color: get-var("text-secondary") !important;
-  }
-
-  &:hover {
+  // also for #toolbar-menubar
+  menuitem:not([disabled]) {
     .menu-accel,
     .menu-iconic-accel {
       color: get-var("text-secondary") !important;
+    }
+
+    &:hover {
+      .menu-accel,
+      .menu-iconic-accel {
+        color: inherit !important;
+      }
+    }
+  }
+
+  menuitem[disabled] {
+    .menu-accel,
+    .menu-iconic-accel {
+      color: get-var("text-secondary") !important;
+    }
+
+    &:hover {
+      .menu-accel,
+      .menu-iconic-accel {
+        color: get-var("text-secondary") !important;
+      }
     }
   }
 }
@@ -86,31 +88,35 @@ toolbarbutton menupopup[placespopup] menuseparator::before {
   }
 }
 
-menupopup,
-panel:not(#autoscroller) {
-  --arrowpanel-background: #{get-var("menu-background-color")} !important;
-  --panel-background: #{get-var("menu-background-color")} !important;
-  --panel-color: #{get-var("text-primary")} !important;
-  --panel-shadow: #{get-var("elevation-2")} !important;
-}
+:root:not([lwtheme]) {
+  menupopup,
+  panel:not(#autoscroller) {
+    --arrowpanel-background: #{get-var("menu-background-color")} !important;
+    --panel-background: #{get-var("menu-background-color")} !important;
+    // Firefox 155+ paints ::part(content) with the design-system variables.
+    // Keep the legacy aliases above for older supported Firefox versions.
+    --panel-background-color: #{get-var("menu-background-color")} !important;
+    --panel-color: #{get-var("text-primary")} !important;
+    --panel-text-color: #{get-var("text-primary")} !important;
+    --panel-shadow: #{get-var("elevation-2")} !important;
+  }
 
-// Keep popup foreground paired with the custom background. This must also
-// apply with userChrome.theme-default because the popup background above is
-// customized unconditionally.
-menupopup,
-menupopup :is(menu, menuitem, menucaption):not([disabled="true"]) {
-  color: #{get-var("text-primary")} !important;
-}
+  // Always pair the custom popup background with its matching foreground.
+  menupopup,
+  menupopup :is(menu, menuitem, menucaption):not([disabled="true"]) {
+    color: #{get-var("text-primary")} !important;
+  }
 
-menupopup
-  :is(menu, menuitem):where([_moz-menuactive="true"]):not([disabled="true"]) {
-  color: #{get-var("text-primary")} !important;
-}
+  menupopup
+    :is(menu, menuitem):where([_moz-menuactive="true"]):not([disabled="true"]) {
+    color: #{get-var("text-primary")} !important;
+  }
 
-menupopup::part(content),
-menupopup::part(arrowscrollbox),
-menupopup > .menupopup-arrowscrollbox {
-  background: #{get-var("menu-background-color")} !important;
+  menupopup::part(content),
+  menupopup::part(arrowscrollbox),
+  menupopup > .menupopup-arrowscrollbox {
+    background: #{get-var("menu-background-color")} !important;
+  }
 }
 
 dialog,

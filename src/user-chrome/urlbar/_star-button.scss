@@ -4,7 +4,7 @@
   align-items: center !important;
 }
 
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   #star-button-box {
     --toolbarbutton-icon-fill-attention: #{get-var("accent-color")} !important;
   }

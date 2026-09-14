@@ -101,11 +101,7 @@ $dark-mode: (
     ),
   "menu-border-color": get-var("grey-800"),
   // tab bar
-  "tab-background-color-hover": cm(
-      get-var("background-color-0"),
-      get-var("background-color-100"),
-      0.4
-    ),
+  "tab-background-color-hover": #254976,
   "tab-separator-color": cm(transparent, get-var("white"), 0.2),
   "tab-outline-color": cm(transparent, get-var("black"), 0.1),
   "tab-opacity": 1,
@@ -122,6 +118,13 @@ $dark-mode: (
       0.7
     ),
   "urlbar-background-color-open": get-var("background-color-50"),
+  // Chromium CR2023 omnibox expanded-state colors.
+  "omnibox-results-background-color": #3c3c3c,
+  "omnibox-results-background-color-hover": cm(#3c3c3c, #fdfcfb, 0.102),
+  "omnibox-results-text-color": #e3e3e3,
+  "omnibox-results-text-dimmed-color": #c7c7c7,
+  "omnibox-results-url-color": #a8c7fa,
+  "omnibox-results-focus-color": #a8c7fa,
   "icon-color-primary": get-var("grey-100"),
   "icon-color-secondary": get-var(grey-500),
   "content-separator-color": #606164,
@@ -176,11 +179,7 @@ $light-mode: (
     ),
   "menu-border-color": get-var("background-color-0"),
   // tab bar
-  "tab-background-color-hover": cm(
-      get-var("background-color-0"),
-      get-var("background-color-100"),
-      0.4
-    ),
+  "tab-background-color-hover": #a4b7e4,
   "tab-separator-color": cm(transparent, get-var("black"), 0.2),
   "tab-outline-color": cm(transparent, get-var("black"), 0.2),
   "tab-opacity": 1,
@@ -195,6 +194,13 @@ $light-mode: (
   "content-separator-color": #dbdcdd,
   "urlbar-background-color-hover": get-var("menu-background-color-hover"),
   "urlbar-background-color-open": get-var("background-color-100"),
+  // Chromium CR2023 omnibox expanded-state colors.
+  "omnibox-results-background-color": #ffffff,
+  "omnibox-results-background-color-hover": cm(#ffffff, #1f1f1f, 0.059),
+  "omnibox-results-text-color": #1f1f1f,
+  "omnibox-results-text-dimmed-color": #474747,
+  "omnibox-results-url-color": #0b57d0,
+  "omnibox-results-focus-color": #0b57d0,
   // selection colors
   "selection-text-color": get-var("black"),
   "selection-background-color": get-var("blue-200"),

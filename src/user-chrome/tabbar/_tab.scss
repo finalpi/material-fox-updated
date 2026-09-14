@@ -31,6 +31,7 @@ body {
 // tab label margin from icon
 .tab-label {
   margin-left: 8px !important;
+  color: inherit !important;
 }
 
 [dir="rtl"] {
@@ -41,7 +42,7 @@ body {
 }
 
 // selected and not selected tab text color
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   .tabbrowser-tab {
     &:not(:is([visuallyselected], [selected])) {
       color: get-var("tab-label-color-inactive") !important;
@@ -159,7 +160,7 @@ body {
   }
 }
 
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   html,
   body {
     --tab-background-color: #{get-var("background-color-100")} !important;

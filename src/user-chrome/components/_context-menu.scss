@@ -34,20 +34,23 @@ $menu-side-paddings: 4px;
     border-radius: 0 !important;
   }
 
-  // context menu background-color & drop shadow
-  .menupopup-arrowscrollbox {
-    background-color: var(--arrowpanel-background) !important;
-    border: none !important;
-    // border: 1px solid !important;
-    // border-color: get-var("menu-border-color") !important;
-    box-shadow: get-var("elevation-2") !important;
+  :root:not([lwtheme]) {
+    // MaterialFox background and shadow are only valid for built-in themes.
+    .menupopup-arrowscrollbox {
+      background-color: var(--arrowpanel-background) !important;
+      border: none !important;
+      box-shadow: get-var("elevation-2") !important;
+    }
   }
 
   // separator color
   menuseparator::before {
-    border-color: get-var("menu-border-color") !important;
     margin-inline-start: $menu-side-paddings !important;
     margin-inline-end: $menu-side-paddings !important;
+  }
+
+  :root:not([lwtheme]) menuseparator::before {
+    border-color: get-var("menu-border-color") !important;
   }
 
   menuseparator {
@@ -127,7 +130,7 @@ $image-width: 16px;
 $image-padding-end: 8px;
 
 @media (-moz-platform: windows) {
-  menupopup {
+  :root:not([lwtheme]) menupopup {
     @media (-moz-windows-mica-popups) {
       appearance: none !important;
     }
@@ -228,13 +231,16 @@ $image-padding-end: 8px;
 
     &[disabled="true"] {
       background-color: transparent !important;
-      color: get-var("text-disabled") !important;
     }
 
     // on hover
     &:where([_moz-menuactive="true"]):not([disabled="true"]) {
       color: inherit !important;
     }
+  }
+
+  :root:not([lwtheme]) :is(menu, menuitem)[disabled="true"] {
+    color: get-var("text-disabled") !important;
   }
 
   // hide "Bookmark Page/Link.."
@@ -300,28 +306,27 @@ arrowscrollbox {
   background-image: none !important;
 }
 
-// Match Chrome's menu state layers regardless of the Firefox system theme.
-menuitem,
-menu {
-  background: transparent !important;
-
-  &:hover {
+:root:not([lwtheme]) {
+  // Match Chrome's menu state layers when MaterialFox owns the colors.
+  menuitem,
+  menu {
     background: transparent !important;
-  }
 
-  &[_moz-menuactive]:is([disabled="true"]) {
-    background: transparent !important;
-  }
+    &:hover {
+      background: transparent !important;
+    }
 
-  &[_moz-menuactive]:not([disabled="true"]) {
-    background: get-var("menu-background-color-hover") !important;
-  }
-}
+    &[_moz-menuactive]:is([disabled="true"]) {
+      background: transparent !important;
+    }
 
-menuitem,
-menu {
-  &[_moz-menuactive]:not([disabled="true"]):active {
-    background-color: get-var("menu-background-color-active") !important;
+    &[_moz-menuactive]:not([disabled="true"]) {
+      background: get-var("menu-background-color-hover") !important;
+
+      &:active {
+        background-color: get-var("menu-background-color-active") !important;
+      }
+    }
   }
 }
 
@@ -335,20 +340,24 @@ menu {
   padding-inline-start: 12px !important;
   padding-inline-end: 12px !important;
   border-radius: 4px !important;
+}
 
-  &[disabled="true"] {
-    background-color: transparent !important;
-    color: get-var("text-disabled") !important;
-  }
+:root:not([lwtheme]) {
+  .subviewbutton {
+    &[disabled="true"] {
+      background-color: transparent !important;
+      color: get-var("text-disabled") !important;
+    }
 
-  // on hover
-  &:where([_moz-menuactive="true"]):not([disabled="true"]) {
-    background-color: get-var("menu-background-color-hover") !important;
-    color: inherit !important;
-  }
+    // on hover
+    &:where([_moz-menuactive="true"]):not([disabled="true"]) {
+      background-color: get-var("menu-background-color-hover") !important;
+      color: inherit !important;
+    }
 
-  &:where([_moz-menuactive="true"]):not([disabled="true"]):active {
-    background-color: get-var("menu-background-color-active") !important;
+    &:where([_moz-menuactive="true"]):not([disabled="true"]):active {
+      background-color: get-var("menu-background-color-active") !important;
+    }
   }
 }
 

@@ -26,7 +26,23 @@ body {
 .tab-background {
   &::before,
   &::after {
-    display: none !important;
+    display: block !important;
+    min-width: 12px !important;
+    max-width: 12px !important;
+    min-height: 12px !important;
+    max-height: 12px !important;
+  }
+
+  &::before {
+    border-bottom-right-radius: 12px !important;
+    transform: translateX(-12px) !important;
+    box-shadow: none !important;
+  }
+
+  &::after {
+    border-bottom-left-radius: 12px !important;
+    transform: translateX(12px) !important;
+    box-shadow: none !important;
   }
 }
 
@@ -101,28 +117,49 @@ body {
 
 // selected tab style
 .tabbrowser-tab:is([visuallyselected], [selected]) .tab-background {
-  min-height: 28px !important;
-  max-height: 28px !important;
-  margin-bottom: var(--tab-vertical-padding) !important;
+  min-height: calc(
+    var(--tab-min-height) - var(--tab-vertical-padding)
+  ) !important;
+  max-height: calc(
+    var(--tab-min-height) - var(--tab-vertical-padding)
+  ) !important;
+  margin-bottom: 0 !important;
 
-  border-bottom-left-radius: 11px !important;
-  border-bottom-right-radius: 11px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+
+  &::before {
+    box-shadow: 4px 4px 0 4px var(--tab-selected-bgcolor) !important;
+  }
+
+  &::after {
+    box-shadow: -4px 4px 0 4px var(--tab-selected-bgcolor) !important;
+  }
 }
 
-@include moz-pref-media("not userChrome.theme-default") {
+:root:not([lwtheme]) {
   // hover bg opacity for not selected tab
   .tabbrowser-tab:not([selected]):hover,
   .tabbrowser-tab[multiselected]:not([selected]) {
     --tab-background-color: #{get-var("tab-background-color-hover")} !important;
   }
+
+  .tabbrowser-tab:is([visuallyselected], [selected]) .tab-background {
+    &::before {
+      box-shadow: 4px 4px 0 4px var(--tab-background-color) !important;
+    }
+
+    &::after {
+      box-shadow: -4px 4px 0 4px var(--tab-background-color) !important;
+    }
+  }
 }
 
-// Firefox moves tabs with compositor-friendly transforms. Avoid repainting
-// child backgrounds and separators while those transforms update.
+// Firefox already promotes its native drag transitions as needed. Avoid
+// dynamically creating a compositor layer for every shifted tab; only freeze
+// decorative transitions so they do not repaint while the tabs move.
 #tabbrowser-tabs[movingtab] .tabbrowser-tab,
 .tabbrowser-tab[style*="transform"] {
-  will-change: transform !important;
-
   .tab-background,
   .tab-content::before,
   .tab-content::after {

@@ -3,10 +3,12 @@
   border-radius: 7px 7px 0 0 !important;
 }
 
-// Chromium maps both the toolbar and attached bookmarks bar to kColorToolbar.
-#nav-bar,
-#PersonalToolbar {
-  background-color: get-var("background-color-100") !important;
+:root:not([lwtheme]) {
+  // Chromium maps both the toolbar and attached bookmarks bar to kColorToolbar.
+  #nav-bar,
+  #PersonalToolbar {
+    background-color: get-var("background-color-100") !important;
+  }
 }
 
 // remove rounded corners for popup windows
@@ -65,15 +67,17 @@
     padding-inline: 4px !important;
   }
 
-  #identity-icon-box {
-    background-color: get-var(background-color-100) !important;
-  }
+  :root:not([lwtheme]) & {
+    #identity-icon-box {
+      background-color: get-var(background-color-100) !important;
+    }
 
-  #identity-box[pageproxystate="valid"].notSecureText > .identity-box-button,
-  #identity-box[pageproxystate="valid"].chromeUI > .identity-box-button,
-  #identity-box[pageproxystate="valid"].extensionPage > .identity-box-button,
-  #urlbar-label-box {
-    background-color: get-var(background-color-100) !important;
+    #identity-box[pageproxystate="valid"].notSecureText > .identity-box-button,
+    #identity-box[pageproxystate="valid"].chromeUI > .identity-box-button,
+    #identity-box[pageproxystate="valid"].extensionPage > .identity-box-button,
+    #urlbar-label-box {
+      background-color: get-var(background-color-100) !important;
+    }
   }
 }
 

@@ -1,131 +1,73 @@
-@include moz-pref-media("not userChrome.theme-default") {
-  // accent color vars
-  :root,
-  html,
-  body,
-  panel,
-  toolbar {
-    --lwt-brighttext-url-color: #{get-var("accent-color")} !important;
-    --toolbarbutton-icon-fill-attention: #{get-var("accent-color")} !important;
+// Only replace Firefox's native theme variables for System theme, Light and
+// Dark. Other lightweight themes retain their complete color and image data.
+:root:not([lwtheme]) {
+  --lwt-brighttext-url-color: #{get-var("accent-color")} !important;
+  --toolbarbutton-icon-fill-attention: #{get-var("accent-color")} !important;
+  --panel-item-hover-bgcolor: #{get-var("menu-background-color-hover")} !important;
+  --toolbar-field-icon-fill-attention: #{get-var("accent-color")} !important;
 
-    --panel-item-hover-bgcolor: #{get-var("menu-background-color-hover")} !important;
-  }
+  --color-accent-primary: #{get-var("accent-color")} !important;
+  accent-color: get-var("accent-color") !important;
 
-  :root,
-  :is(panel, toolbar, #urlbar, #searchbar) {
-    --toolbar-field-icon-fill-attention: #{get-var("accent-color")} !important;
-  }
+  --panel-banner-item-info-icon-bgcolor: #{get-var("accent-color")} !important;
+  --focus-outline-color: #{get-var("accent-color")} !important;
+  --button-primary-active-bgcolor: #{get-var("accent-color")} !important;
+  --button-primary-bgcolor: #{get-var("accent-color")} !important;
+  --button-primary-hover-bgcolor: #{get-var("accent-color-hover")} !important;
+  --toolbar-field-focus-border-color: #{get-var("accent-color")} !important;
 
-  :root,
-  html,
-  body {
-    --color-accent-primary: #{get-var("accent-color")} !important;
-    accent-color: get-var("accent-color") !important;
-  }
+  --link-color: #{get-var("accent-color")} !important;
+  --link-color-hover: #{get-var("accent-color")} !important;
+  --link-color-active: #{get-var("accent-color")} !important;
+  --link-color-visited: #{get-var("accent-color")} !important;
+  --text-color-deemphasized: #{get-var("text-secondary")} !important;
 
-  :root,
-  html,
-  body {
-    --panel-banner-item-info-icon-bgcolor: #{get-var("accent-color")} !important;
-    --focus-outline-color: #{get-var("accent-color")} !important;
-    --button-primary-active-bgcolor: #{get-var("accent-color")} !important;
-    --button-primary-bgcolor: #{get-var("accent-color")} !important;
-    --button-primary-hover-bgcolor: #{get-var("accent-color-hover")} !important;
-    --toolbar-field-focus-border-color: #{get-var("accent-color")} !important;
+  --panel-border-color: #{get-var("menu-border-color")} !important;
+  --panel-shadow: #{get-var("elevation-2")} !important;
+  --windows-panel-box-shadow: #{get-var("elevation-2")} !important;
 
-    --link-color: #{get-var("accent-color")} !important;
-    --link-color-hover: #{get-var("accent-color")} !important;
-    --link-color-active: #{get-var("accent-color")} !important;
-    --link-color-visited: #{get-var("accent-color")} !important;
+  --lwt-accent-color: #{get-var("background-color-0")} !important;
+  --toolbar-field-background-color: #{get-var("urlbar-background-color")} !important;
+  --toolbar-field-focus-background-color: #{get-var("urlbar-background-color")} !important;
+  --lwt-background-tab-separator-color: #{get-var("background-color-0")} !important;
 
-    // secondary text color
-    --text-color-deemphasized: #{get-var("text-secondary")} !important;
-  }
+  --arrowpanel-background: #{get-var("menu-background-color")} !important;
+  --arrowpanel-border-color: #{get-var("menu-border-color")} !important;
+  --panel-separator-color: #{get-var("menu-border-color")} !important;
+  --lwt-selected-tab-background-color: #{get-var("background-color-100")} !important;
+  --autocomplete-popup-highlight-background: #{get-var("background-color-50")} !important;
+  --tabpanel-background-color: #{get-var("background-color-50")} !important;
+  --toolbarseparator-color: #{get-var("background-color-50")} !important;
+  --tab-icon-overlay-stroke: #{get-var("background-color-50")} !important;
+  --toolbar-bgcolor: #{get-var("background-color-100")} !important;
 
-  // shadow
-  :root,
-  html,
-  body,
-  menupopup,
-  panel {
-    --panel-border-color: #{get-var("menu-border-color")} !important;
-    --panel-shadow: #{get-var("elevation-2")} !important;
-    --windows-panel-box-shadow: #{get-var("elevation-2")} !important;
-  }
+  --arrowpanel-color: #{get-var("text-primary")} !important;
+  --input-color: #{get-var("text-primary")} !important;
+  --lwt-tab-text: #{get-var("text-primary")} !important;
+  --tab-selected-textcolor: #{get-var("tab-label-color")} !important;
+  --lwt-text-color: #{get-var("text-primary")} !important;
+  --toolbar-color: #{get-var("text-primary")} !important;
+  --toolbar-field-color: #{get-var("text-primary")} !important;
+  --toolbar-field-focus-color: #{get-var("text-primary")} !important;
 
-  html,
-  body {
-    //----------------------------------------------------------------------
-    // --   Firefox vars
-    // ----------------------------------------------------------------------
+  --button-primary-color: #{get-var("text-on-accent")} !important;
+  --autocomplete-popup-separator-color: #{get-var("menu-border-color")} !important;
+  --button-active-bgcolor: #{get-var("control-background-color")} !important;
+  --button-bgcolor: #{get-var("control-background-color")} !important;
+  --button-hover-bgcolor: #{get-var("control-background-color")} !important;
+  --chrome-content-separator-color: #{get-var("tab-outline-color")} !important;
 
-    // gray-900 - 0% lt dark bg
-    --lwt-accent-color: #{get-var("background-color-0")} !important;
-    --toolbar-field-background-color: #{get-var("urlbar-background-color")} !important;
-    --toolbar-field-focus-background-color: #{get-var(
-        "urlbar-background-color"
-      )} !important;
-    --lwt-background-tab-separator-color: #{get-var("background-color-0")} !important;
+  --panel-separator-zap-gradient: transparent !important;
+  --tab-icon-overlay-fill: #{get-var("icon-color-secondary")} !important;
+  --toolbar-field-border-color: transparent !important;
+  --toolbarbutton-icon-fill: #{get-var("icon-color-primary")} !important;
+  --urlbar-icon-fill-opacity: 1 !important;
 
-    // grey-900-white-4-percent - 50% lt dark bg
-    --arrowpanel-background: #{get-var("menu-background-color")} !important;
-    --arrowpanel-border-color: #{get-var("menu-border-color")} !important;
-    --panel-separator-color: #{get-var("menu-border-color")} !important;
-    --lwt-selected-tab-background-color: #{get-var("background-color-100")} !important;
-    --autocomplete-popup-highlight-background: #{get-var("background-color-50")} !important;
-    --tabpanel-background-color: #{get-var("background-color-50")} !important;
-    --toolbarseparator-color: #{get-var("background-color-50")} !important;
-    --tab-icon-overlay-stroke: #{get-var("background-color-50")} !important;
+  --in-content-primary-button-text-color: #{get-var("text-on-accent")} !important;
+  --in-content-primary-button-background: #{get-var("accent-color")} !important;
+  --in-content-primary-button-background-hover: #{get-var("accent-color-hover")} !important;
+  --in-content-primary-button-background-active: #{get-var("accent-color")} !important;
 
-    // grey-900-white-5-percent - 100% lt dark bg
-    --toolbar-bgcolor: #{get-var("background-color-100")} !important;
-
-    // grey-200 - primary text
-    --arrowpanel-color: #{get-var("text-primary")} !important;
-    --input-color: #{get-var("text-primary")} !important;
-    --lwt-tab-text: #{get-var("text-primary")} !important;
-    --lwt-text-color: #{get-var("text-primary")} !important;
-    --toolbar-color: #{get-var("text-primary")} !important;
-    --toolbar-field-color: #{get-var("text-primary")} !important;
-    --toolbar-field-focus-color: #{get-var("text-primary")} !important;
-
-    // text on accent
-    --button-primary-color: #{get-var("text-on-accent")} !important;
-
-    --autocomplete-popup-separator-color: #{get-var("menu-border-color")} !important;
-
-    --button-active-bgcolor: #{get-var("control-background-color")} !important;
-    --button-bgcolor: #{get-var("control-background-color")} !important;
-    --button-hover-bgcolor: #{get-var("control-background-color")} !important;
-
-    --chrome-content-separator-color: #{get-var("tab-outline-color")} !important;
-
-    --panel-separator-zap-gradient: transparent !important;
-    --tab-icon-overlay-fill: #{get-var("icon-color-secondary")} !important;
-    --toolbar-field-border-color: transparent !important;
-    --toolbarbutton-icon-fill: #{get-var("icon-color-primary")} !important;
-
-    // opacity for url bar icons
-    --urlbar-icon-fill-opacity: 1 !important;
-  }
-
-  :root,
-  html,
-  body,
-  dialog {
-    // primary button colors
-    --in-content-primary-button-text-color: #{get-var("text-on-accent")} !important;
-    --in-content-primary-button-background: #{get-var("accent-color")} !important;
-    --in-content-primary-button-background-hover: #{get-var(
-        "accent-color-hover"
-      )} !important;
-    --in-content-primary-button-background-active: #{get-var("accent-color")} !important;
-  }
-
-  // Remove tab outline described in https://github.com/finalpi/material-fox-updated/issues/62
-  :root,
-  html,
-  body,
   .tab-background {
     --tab-selected-outline-color: transparent !important;
   }
