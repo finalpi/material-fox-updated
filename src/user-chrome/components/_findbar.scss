@@ -243,6 +243,47 @@ $-checkbox-selectors: (
   position: absolute !important;
   margin: 5px 17px 0 5px !important;
   align-items: center !important;
+  // Keep the floating findbar above the web content and sidebar surfaces.
+  // Without an explicit stacking level, content overlays can cover it because
+  // the findbar is positioned before the browser element in the XUL tree.
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: max-content !important;
+  max-width: calc(100% - 22px) !important;
+}
+
+// Firefox versions that move FindToolbar outside browserContainer need the
+// same overlay treatment on the id itself.
+#FindToolbar {
+  position: fixed !important;
+  inset: auto 12px 12px auto !important;
+  z-index: 2147483647 !important;
+  width: max-content !important;
+  max-width: calc(100% - 22px) !important;
+  min-height: 36px !important;
+  animation: none !important;
+  overflow: visible !important;
+}
+
+// Firefox toggles the findbar with the `hidden`/`collapsed` attributes. The
+// theme's scale animation can otherwise leave the opened bar at scaleY(0).
+.browserContainer>findbar:not([hidden='true']):not([collapsed='true']),
+#FindToolbar:not([hidden='true']):not([collapsed='true']) {
+  position: fixed !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  min-width: 320px !important;
+  min-height: 32px !important;
+  top: 5px !important;
+  bottom: auto !important;
+  right: 12px !important;
+  left: auto !important;
+  width: max-content !important;
+  max-width: calc(100% - 22px) !important;
 }
 
 .findbar-container {
