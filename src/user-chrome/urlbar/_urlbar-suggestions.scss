@@ -6,11 +6,39 @@
 }
 
 :root:not([lwtheme]) {
+  // Paint the shell and results with the same color so the shell's padding
+  // cannot show through as a dark rim around the rounded suggestions.
+  #urlbar[open] #urlbar-background,
+  #urlbar[open] .urlbar-background {
+    background: get-var("omnibox-results-background-color") !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24) !important;
+  }
+
   #urlbar[open] > .urlbarView,
   #urlbar[open] > .urlbarView > .urlbarView-body-outer,
   #urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner,
   #urlbar[open] > .urlbarView .urlbarView-results {
     background: get-var("omnibox-results-background-color") !important;
+  }
+
+  #urlbar[open] > .urlbarView {
+    border-bottom-left-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  // Firefox 157 paints the suggestions in a separate popover. Its joint
+  // background must match the input without casting a shadow across the seam.
+  #urlbar[popover-open] > .urlbar-background {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #urlbar[open] .urlbarView-background {
+    background: get-var("omnibox-results-background-color") !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24) !important;
   }
 }
 
