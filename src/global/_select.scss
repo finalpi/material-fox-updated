@@ -1,7 +1,7 @@
 $select-border-radius: 8px;
 // general "select" control styles
 select,
-menulist,
+menulist:not(#ContentSelectDropdown),
 .expander-down,
 .expander-up,
 button[type="menu"] {
@@ -29,7 +29,7 @@ button[type="menu"] {
 }
 
 // select dropdown menu styles
-menulist > menupopup {
+menulist:not(#ContentSelectDropdown) > menupopup {
   --panel-shadow: #{get-var("elevation-2")} !important;
 
   --panel-border-color: #{get-var("menu-border-color")} !important;

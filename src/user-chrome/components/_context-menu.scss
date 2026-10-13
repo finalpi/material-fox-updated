@@ -36,7 +36,9 @@ $menu-side-paddings: 4px;
 
   :root:not([lwtheme]) {
     // MaterialFox background and shadow are only valid for built-in themes.
-    .menupopup-arrowscrollbox {
+    .menupopup-arrowscrollbox:not(
+      :where(#ContentSelectDropdown, #ContentSelectDropdown *)
+    ) {
       background-color: var(--arrowpanel-background) !important;
       border: none !important;
       box-shadow: get-var("elevation-2") !important;
@@ -130,7 +132,8 @@ $image-width: 16px;
 $image-padding-end: 8px;
 
 @media (-moz-platform: windows) {
-  :root:not([lwtheme]) menupopup {
+  :root:not([lwtheme])
+    menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *)) {
     @media (-moz-windows-mica-popups) {
       appearance: none !important;
     }
@@ -229,17 +232,20 @@ $image-padding-end: 8px;
     margin-inline-end: $menu-side-paddings !important;
     border-radius: 4px !important;
 
-    &[disabled="true"] {
+    &[disabled="true"]:not(:where(#ContentSelectDropdown *)) {
       background-color: transparent !important;
     }
 
     // on hover
-    &:where([_moz-menuactive="true"]):not([disabled="true"]) {
+    &:where([_moz-menuactive="true"]):not([disabled="true"]):not(
+        :where(#ContentSelectDropdown *)
+      ) {
       color: inherit !important;
     }
   }
 
-  :root:not([lwtheme]) :is(menu, menuitem)[disabled="true"] {
+  :root:not([lwtheme])
+    :is(menu, menuitem)[disabled="true"]:not(:where(#ContentSelectDropdown *)) {
     color: get-var("text-disabled") !important;
   }
 
@@ -302,14 +308,14 @@ $image-padding-end: 8px;
 }
 
 // fix dropdown menu background color override
-arrowscrollbox {
+arrowscrollbox:not(:where(#ContentSelectDropdown *)) {
   background-image: none !important;
 }
 
 :root:not([lwtheme]) {
   // Match Chrome's menu state layers when MaterialFox owns the colors.
-  menuitem,
-  menu {
+  menuitem:not(:where(#ContentSelectDropdown *)),
+  menu:not(:where(#ContentSelectDropdown *)) {
     background: transparent !important;
 
     &:hover {

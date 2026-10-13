@@ -82,14 +82,14 @@ toolbarbutton menupopup[placespopup] menuseparator::before {
 
 // popup drop shadow
 @media (-moz-platform: windows) {
-  menupopup,
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *)),
   panel:not(#autoscroller) {
     --panel-shadow-margin: 12px !important;
   }
 }
 
 :root:not([lwtheme]) {
-  menupopup,
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *)),
   panel:not(#autoscroller) {
     --arrowpanel-background: #{get-var("menu-background-color")} !important;
     --panel-background: #{get-var("menu-background-color")} !important;
@@ -102,19 +102,25 @@ toolbarbutton menupopup[placespopup] menuseparator::before {
   }
 
   // Always pair the custom popup background with its matching foreground.
-  menupopup,
-  menupopup :is(menu, menuitem, menucaption):not([disabled="true"]) {
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *)),
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *))
+    :is(menu, menuitem, menucaption):not([disabled="true"]) {
     color: #{get-var("text-primary")} !important;
   }
 
-  menupopup
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *))
     :is(menu, menuitem):where([_moz-menuactive="true"]):not([disabled="true"]) {
     color: #{get-var("text-primary")} !important;
   }
 
-  menupopup::part(content),
-  menupopup::part(arrowscrollbox),
-  menupopup > .menupopup-arrowscrollbox {
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *))::part(
+      content
+    ),
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *))::part(
+      arrowscrollbox
+    ),
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *))
+    > .menupopup-arrowscrollbox {
     background: #{get-var("menu-background-color")} !important;
   }
 }
