@@ -307,11 +307,6 @@ $image-padding-end: 8px;
   }
 }
 
-// fix dropdown menu background color override
-arrowscrollbox:not(:where(#ContentSelectDropdown *)) {
-  background-image: none !important;
-}
-
 :root:not([lwtheme]) {
   // Match Chrome's menu state layers when MaterialFox owns the colors.
   menuitem:not(:where(#ContentSelectDropdown *)),

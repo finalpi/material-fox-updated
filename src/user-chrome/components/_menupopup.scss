@@ -125,6 +125,35 @@ toolbarbutton menupopup[placespopup] menuseparator::before {
   }
 }
 
+// SelectParent transports a webpage's select background as a gradient, not as
+// background-color. Target the exposed part so generic shadow-DOM menu rules
+// cannot erase that gradient while leaving the webpage's foreground intact.
+#ContentSelectDropdown > menupopup::part(content) {
+  background-color: var(--panel-background-color) !important;
+  background-image: var(--content-select-background-image, none) !important;
+  color: var(--panel-text-color) !important;
+}
+
+// Web options have no icon gutter. Keep their highlight contiguous and their
+// density independent of browser-menu padding.
+#ContentSelectDropdown > menupopup {
+  --panel-padding: 0 !important;
+  --panel-border-radius: 2px !important;
+
+  > :is(menuitem, menucaption) {
+    margin: 0 !important;
+    padding: 4px 8px !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+  }
+
+  > menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
+    background-color: #1967d2 !important;
+    color: #fff !important;
+  }
+}
+
 dialog,
 .dialogBox {
   .titleIcon {
@@ -160,7 +189,7 @@ dialog,
 
 @media (-moz-platform: windows) {
   // context menu padding inline start
-  menupopup {
+  menupopup:not(:where(#ContentSelectDropdown, #ContentSelectDropdown *)) {
     menuitem:not(.menuitem-iconic, [checked="true"]),
     menu:not(.menu-iconic) {
       padding-inline-start: 36px !important;
